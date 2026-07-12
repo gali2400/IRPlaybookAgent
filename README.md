@@ -17,50 +17,50 @@ IRPlaybookAgent is a conversational agentic AI system that guides security respo
 ### Home — Incident Input
 A non-technical responder describes the incident in plain language. The sidebar shows the active LLM, organization profile, a step-by-step explanation of the pipeline, and pre-loaded demo scenarios.
 
-![Home screen — empty input](docs/screenshots/01_home_empty.png)
+![Home screen — empty input](screenshots/01_home_empty.png)
 
-![Home screen — incident loaded and ready to run](docs/screenshots/02_home_loaded.png)
+![Home screen — incident loaded and ready to run](screenshots/02_home_loaded.png)
 
 ---
 
 ### Tab 1 — Triage Results
 After running the pipeline, the Triage tab displays the incident type, severity, blast radius, immediate actions the responder should take right now, affected systems, and a MITRE ATT&CK technique table.
 
-![Triage tab — ransomware classification](docs/screenshots/03_triage.png)
+![Triage tab — ransomware classification](screenshots/03_triage.png)
 
 ---
 
 ### Tab 2 — Response Playbook
 The Playbook tab shows the NIST SP 800-61 aligned four-phase response plan (Containment → Eradication → Recovery → Post-Incident). Each step is expandable and shows who is responsible, time estimate, and rationale.
 
-![Playbook tab — Phase 1 Containment and Phase 2 Eradication](docs/screenshots/04_playbook_phases1.png)
+![Playbook tab — Phase 1 Containment and Phase 2 Eradication](screenshots/04_playbook_phases1.png)
 
-![Playbook tab — Phase 2 Eradication and Phase 3 Recovery](docs/screenshots/05_playbook_phases2.png)
+![Playbook tab — Phase 2 Eradication and Phase 3 Recovery](screenshots/05_playbook_phases2.png)
 
-![Playbook tab — Phase 4 Post-Incident Activity](docs/screenshots/06_playbook_phase4.png)
+![Playbook tab — Phase 4 Post-Incident Activity](screenshots/06_playbook_phase4.png)
 
 ---
 
 ### Tab 3 — Critic / Validator Review
 The Critic Agent reviews the generated playbook for dangerous or missing steps before it is delivered to the responder. Issues are classified as Blocking, Warning, or Advisory with specific fix recommendations.
 
-![Critic Review tab — blocking issues and warnings](docs/screenshots/07_critic_review.png)
+![Critic Review tab — blocking issues and warnings](screenshots/07_critic_review.png)
 
 ---
 
 ### Tab 4 — Advisor
 The Advisor tab provides a conversational interface for follow-up questions, constraint reporting ("we can't take Epic offline"), and progress updates. The advisor adapts the playbook in real time.
 
-![Advisor tab — chat interface](docs/screenshots/08_advisor.png)
+![Advisor tab — chat interface](screenshots/08_advisor.png)
 
 ---
 
 ### Tab 5 — Incident Report
 After the advisor session ends, the Documentation Agent generates a structured incident report with executive summary, incident timeline, lessons learned, HIPAA breach assessment with notification deadlines, and recommendations.
 
-![Report tab — executive summary, timeline, lessons learned](docs/screenshots/09_report_summary.png)
+![Report tab — executive summary, timeline, lessons learned](screenshots/09_report_summary.png)
 
-![Report tab — HIPAA breach assessment and recommendations](docs/screenshots/10_report_hipaa.png)
+![Report tab — HIPAA breach assessment and recommendations](screenshots/10_report_hipaa.png)
 
 ---
 
