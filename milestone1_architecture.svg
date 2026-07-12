@@ -1,0 +1,154 @@
+<svg viewBox="0 0 900 720" xmlns="http://www.w3.org/2000/svg" role="img" font-family="Arial, sans-serif">
+  <title>IRPlaybookAgent Architecture Diagram</title>
+  <desc>Five-agent LangGraph pipeline for incident response: Triage, Playbook Generator, Critic, Advisor, Documentation</desc>
+
+  <!-- Background -->
+  <rect width="900" height="720" fill="#F8F9FA"/>
+
+  <!-- Title -->
+  <text x="450" y="36" text-anchor="middle" font-size="18" font-weight="bold" fill="#1A1A2E">IRPlaybookAgent — Multi-Agent Architecture</text>
+  <text x="450" y="56" text-anchor="middle" font-size="12" fill="#666">CIS 8045 Agentic AI | Guled Ali</text>
+  <line x1="60" y1="66" x2="840" y2="66" stroke="#CCCCCC" stroke-width="1"/>
+
+  <!-- USER INPUT -->
+  <rect x="330" y="80" width="240" height="48" rx="8" fill="#1A1A2E"/>
+  <text x="450" y="100" text-anchor="middle" font-size="12" font-weight="bold" fill="white">User Input</text>
+  <text x="450" y="118" text-anchor="middle" font-size="10" fill="#AAB4C0">Incident description (natural language)</text>
+
+  <!-- Arrow down to LangGraph -->
+  <line x1="450" y1="128" x2="450" y2="152" stroke="#1A1A2E" stroke-width="2" marker-end="url(#arrow-dark)"/>
+
+  <!-- LangGraph State Box -->
+  <rect x="60" y="152" width="780" height="400" rx="10" fill="none" stroke="#2E5F8A" stroke-width="2" stroke-dasharray="8,4"/>
+  <text x="82" y="172" font-size="11" font-weight="bold" fill="#2E5F8A">LangGraph State Machine — AgentState flows through all agents</text>
+
+  <!-- AGENT 1: TRIAGE -->
+  <rect x="90" y="185" width="160" height="90" rx="8" fill="#C81026"/>
+  <text x="170" y="207" text-anchor="middle" font-size="12" font-weight="bold" fill="white">1. Triage Agent</text>
+  <line x1="90" y1="215" x2="250" y2="215" stroke="white" stroke-width="0.5" stroke-opacity="0.4"/>
+  <text x="170" y="230" text-anchor="middle" font-size="9" fill="#FFD0D5">IN: incident_description</text>
+  <text x="170" y="244" text-anchor="middle" font-size="9" fill="#FFD0D5">OUT: type, severity,</text>
+  <text x="170" y="257" text-anchor="middle" font-size="9" fill="#FFD0D5">systems, MITRE map</text>
+
+  <!-- Arrow 1 to 2 -->
+  <line x1="250" y1="230" x2="310" y2="230" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- AGENT 2: PLAYBOOK -->
+  <rect x="310" y="185" width="160" height="90" rx="8" fill="#1A3A5C"/>
+  <text x="390" y="207" text-anchor="middle" font-size="12" font-weight="bold" fill="white">2. Playbook Agent</text>
+  <line x1="310" y1="215" x2="470" y2="215" stroke="white" stroke-width="0.5" stroke-opacity="0.4"/>
+  <text x="390" y="230" text-anchor="middle" font-size="9" fill="#B0C8E0">IN: triage results</text>
+  <text x="390" y="244" text-anchor="middle" font-size="9" fill="#B0C8E0">OUT: playbook_phases</text>
+  <text x="390" y="257" text-anchor="middle" font-size="9" fill="#B0C8E0">(4 NIST 800-61 phases)</text>
+
+  <!-- Arrow 2 to 3 -->
+  <line x1="470" y1="230" x2="530" y2="230" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- AGENT 3: CRITIC -->
+  <rect x="530" y="185" width="160" height="90" rx="8" fill="#2E5F8A"/>
+  <text x="610" y="207" text-anchor="middle" font-size="12" font-weight="bold" fill="white">3. Critic Agent</text>
+  <line x1="530" y1="215" x2="690" y2="215" stroke="white" stroke-width="0.5" stroke-opacity="0.4"/>
+  <text x="610" y="230" text-anchor="middle" font-size="9" fill="#C0D8F0">IN: playbook_phases</text>
+  <text x="610" y="244" text-anchor="middle" font-size="9" fill="#C0D8F0">OUT: issues, revised</text>
+  <text x="610" y="257" text-anchor="middle" font-size="9" fill="#C0D8F0">playbook_phases</text>
+
+  <!-- Human Review node -->
+  <rect x="700" y="198" width="110" height="64" rx="8" fill="#F0F4F8" stroke="#2E5F8A" stroke-width="1.5"/>
+  <text x="755" y="220" text-anchor="middle" font-size="10" font-weight="bold" fill="#1A3A5C">Human Review</text>
+  <text x="755" y="235" text-anchor="middle" font-size="9" fill="#555">Streamlit UI</text>
+  <text x="755" y="249" text-anchor="middle" font-size="9" fill="#555">shows playbook</text>
+
+  <line x1="690" y1="230" x2="700" y2="230" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- AGENT 4: ADVISOR (loop) -->
+  <rect x="200" y="330" width="420" height="90" rx="8" fill="#1A3A5C"/>
+  <rect x="200" y="330" width="420" height="30" rx="8" fill="#0D2238"/>
+  <rect x="200" y="348" width="420" height="12" fill="#0D2238"/>
+  <text x="410" y="351" text-anchor="middle" font-size="12" font-weight="bold" fill="white">4. Advisor Agent — Conversational Loop</text>
+  <line x1="200" y1="362" x2="620" y2="362" stroke="white" stroke-width="0.5" stroke-opacity="0.3"/>
+  <text x="410" y="378" text-anchor="middle" font-size="9" fill="#B0C8E0">IN: user message, conversation_history, constraints</text>
+  <text x="410" y="393" text-anchor="middle" font-size="9" fill="#B0C8E0">OUT: advisor_response, updated constraints, session_complete</text>
+  <text x="410" y="408" text-anchor="middle" font-size="9" fill="#78A8D0">Iterates until user ends session or session_complete = True</text>
+
+  <!-- Loop arrow from human review down to advisor -->
+  <path d="M755 262 L755 305 L620 305 L620 375" stroke="#C81026" stroke-width="2" fill="none" stroke-dasharray="6,3" marker-end="url(#arrow-red)"/>
+  <text x="760" y="290" font-size="9" fill="#C81026">Playbook</text>
+  <text x="760" y="302" font-size="9" fill="#C81026">approved</text>
+
+  <!-- User feedback loop arrow -->
+  <path d="M410 420 L410 450 L145 450 L145 375 L200 375" stroke="#2E5F8A" stroke-width="1.5" fill="none" stroke-dasharray="5,3" marker-end="url(#arrow-blue)"/>
+  <text x="95" y="415" font-size="9" fill="#2E5F8A">User</text>
+  <text x="88" y="427" font-size="9" fill="#2E5F8A">follow-ups</text>
+
+  <!-- AGENT 5: DOCUMENTATION -->
+  <rect x="310" y="480" width="280" height="80" rx="8" fill="#444"/>
+  <text x="450" y="502" text-anchor="middle" font-size="12" font-weight="bold" fill="white">5. Documentation Agent</text>
+  <line x1="310" y1="510" x2="590" y2="510" stroke="white" stroke-width="0.5" stroke-opacity="0.3"/>
+  <text x="450" y="525" text-anchor="middle" font-size="9" fill="#CCC">IN: full session state, conversation_history</text>
+  <text x="450" y="540" text-anchor="middle" font-size="9" fill="#CCC">OUT: incident_report.json, HIPAA assessment</text>
+
+  <!-- Arrow advisor to documentation -->
+  <line x1="450" y1="420" x2="450" y2="480" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="458" y="455" font-size="9" fill="#555">session_complete</text>
+
+  <!-- OUTPUT -->
+  <rect x="330" y="588" width="240" height="44" rx="8" fill="#1A1A2E"/>
+  <text x="450" y="607" text-anchor="middle" font-size="11" font-weight="bold" fill="white">Output</text>
+  <text x="450" y="623" text-anchor="middle" font-size="10" fill="#AAB4C0">Incident Report + HIPAA Assessment</text>
+
+  <line x1="450" y1="560" x2="450" y2="588" stroke="#1A1A2E" stroke-width="2" marker-end="url(#arrow-dark)"/>
+
+  <!-- TOOLS PANEL -->
+  <rect x="90" y="490" width="175" height="120" rx="8" fill="#F0F4F8" stroke="#CCC" stroke-width="1"/>
+  <text x="177" y="510" text-anchor="middle" font-size="11" font-weight="bold" fill="#1A3A5C">Tools &amp; APIs</text>
+  <line x1="90" y1="516" x2="265" y2="516" stroke="#CCC" stroke-width="1"/>
+  <text x="107" y="532" font-size="9" fill="#333">LLM: Groq / Gemini (free tier)</text>
+  <text x="107" y="548" font-size="9" fill="#333">MITRE ATT&amp;CK (local JSON)</text>
+  <text x="107" y="564" font-size="9" fill="#333">NIST SP 800-61 (local JSON)</text>
+  <text x="107" y="580" font-size="9" fill="#333">MedBridge corpus (local MD)</text>
+  <text x="107" y="596" font-size="9" fill="#333">Streamlit (frontend UI)</text>
+
+  <line x1="265" y1="550" x2="310" y2="520" stroke="#CCC" stroke-width="1" stroke-dasharray="4,2"/>
+
+  <!-- RIGHT PANEL: Coordination -->
+  <rect x="635" y="490" width="175" height="120" rx="8" fill="#F0F4F8" stroke="#CCC" stroke-width="1"/>
+  <text x="722" y="510" text-anchor="middle" font-size="11" font-weight="bold" fill="#1A3A5C">Coordination</text>
+  <line x1="635" y1="516" x2="810" y2="516" stroke="#CCC" stroke-width="1"/>
+  <text x="648" y="532" font-size="9" fill="#333">Pipeline: 1 to 2 to 3 (fixed)</text>
+  <text x="648" y="548" font-size="9" fill="#333">Loop: Advisor per user turn</text>
+  <text x="648" y="564" font-size="9" fill="#333">State: LangGraph AgentState</text>
+  <text x="648" y="580" font-size="9" fill="#333">Fallback: static data on error</text>
+  <text x="648" y="596" font-size="9" fill="#333">HITL: Human review gate</text>
+
+  <line x1="635" y1="550" x2="590" y2="520" stroke="#CCC" stroke-width="1" stroke-dasharray="4,2"/>
+
+  <!-- Legend -->
+  <rect x="90" y="640" width="720" height="66" rx="6" fill="#F0F4F8" stroke="#CCC" stroke-width="1"/>
+  <text x="106" y="658" font-size="10" font-weight="bold" fill="#1A3A5C">Legend</text>
+  <rect x="106" y="665" width="14" height="10" rx="2" fill="#C81026"/>
+  <text x="125" y="675" font-size="9" fill="#333">Triage Agent</text>
+  <rect x="206" y="665" width="14" height="10" rx="2" fill="#1A3A5C"/>
+  <text x="225" y="675" font-size="9" fill="#333">Playbook / Advisor / Doc Agents</text>
+  <rect x="390" y="665" width="14" height="10" rx="2" fill="#2E5F8A"/>
+  <text x="409" y="675" font-size="9" fill="#333">Critic Agent</text>
+  <line x1="480" y1="670" x2="510" y2="670" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="515" y="675" font-size="9" fill="#333">Fixed pipeline flow</text>
+  <line x1="620" y1="670" x2="650" y2="670" stroke="#C81026" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow-red)"/>
+  <text x="655" y="675" font-size="9" fill="#333">Conditional / loop flow</text>
+
+  <!-- Defs -->
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#333"/>
+    </marker>
+    <marker id="arrow-dark" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#1A1A2E"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#C81026"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#2E5F8A"/>
+    </marker>
+  </defs>
+</svg>

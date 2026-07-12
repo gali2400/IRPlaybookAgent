@@ -1,0 +1,27 @@
+# ============================================================
+# IRPlaybookAgent — Requirements (All Free, No Paid APIs Required)
+# ============================================================
+
+# Core agent framework
+langgraph>=0.2.0
+langchain>=0.3.0
+langchain-core>=0.3.0
+langchain-groq>=0.2.0           # Groq API (free tier) — primary LLM
+langchain-google-genai>=2.0.0   # Google Gemini (free tier) — fallback LLM
+langchain-community>=0.3.0
+
+# Frontend
+streamlit>=1.40.0
+
+# Data
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Utilities
+python-dotenv>=1.0.0
+requests>=2.31.0
+pydantic>=2.0.0
+
+# Testing
+pytest>=8.0.0
+pytest-asyncio>=0.23.0

@@ -1,0 +1,57 @@
+{
+    "org_name": "MedBridge Health Systems",
+    "industry": "Healthcare",
+    "regulatory_frameworks": ["HIPAA", "HITECH"],
+    "size": {
+        "employees": 1200,
+        "clinical_staff": 680,
+        "it_staff": 7,
+        "facilities": 6,
+        "patients": 340000
+    },
+    "environment": {
+        "type": "Hybrid (Azure + On-Premises)",
+        "primary_ehr": "Epic EHR",
+        "cloud_provider": "Microsoft Azure",
+        "identity_provider": "Azure Active Directory / Entra ID",
+        "managed_endpoints": 492,
+        "windows_servers": 40,
+        "linux_servers": 12
+    },
+    "location": "Atlanta metropolitan area",
+    "key_systems": [
+        "Epic EHR (APP-001, APP-002)",
+        "Active Directory (AD-DC-01, AD-DC-02)",
+        "Rhapsody Integration Engine (RHAPSODY-01)",
+        "Azure Blob Storage (AZ-005)",
+        "Cisco ASA 5555-X (NET-001)"
+    ],
+    "key_vendors": [
+        {"name": "LabConnect", "service": "HL7 lab integration", "connection": "Site-to-site VPN"},
+        {"name": "RadCloud", "service": "DICOM radiology archive", "connection": "HTTPS API"},
+        {"name": "PaySync", "service": "Payment processing", "connection": "HTTPS API"}
+    ],
+    "known_incidents": [
+        {"id": "INC-2023-001", "type": "Credential phishing (AiTM)", "impact": "3 accounts compromised"},
+        {"id": "INC-2024-001", "type": "Malware on clinical workstation", "impact": "72-hour dwell time"},
+        {"id": "INC-2024-002", "type": "Azure Blob misconfiguration", "impact": "12 hours PHI exposure"}
+    ],
+    "security_gaps": [
+        "No CISO or dedicated security leadership",
+        "No SIEM deployed",
+        "No EDR — Windows Defender AV only",
+        "MFA coverage at 35% overall (clinical staff 12%)",
+        "No PAM tool; 14 domain admin accounts used daily",
+        "Incident Response Plan outdated since December 2021",
+        "BCP untested since June 2020",
+        "Epic backup recovery never validated",
+        "120 medical devices (infusion pumps) with default credentials"
+    ],
+    "breach_notification": {
+        "hipaa_window_days": 60,
+        "state_law": "Georgia Personal Identity Protection Act",
+        "state_window_days": 30,
+        "notify_hhs": true,
+        "notify_media_if_over": 500
+    }
+}
